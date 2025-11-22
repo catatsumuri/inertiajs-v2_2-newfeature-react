@@ -1,8 +1,12 @@
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
-import { dashboard } from '@/routes';
+import { dashboard, polling, deferredProps, infiniteScroll } from '@/routes';
+import { index as partialReloadIndex } from '@/routes/partial-reload';
+import { index as formIndex } from '@/routes/form';
+import { index as viewTransitionIndex } from '@/routes/view-transition';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Radio, RefreshCw, Timer, ArrowDownUp, FileText, Sparkles } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -11,24 +15,61 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+const features = [
+    {
+        title: 'Partial Reload',
+        href: partialReloadIndex(),
+        icon: RefreshCw,
+    },
+    {
+        title: 'Polling',
+        href: polling(),
+        icon: Radio,
+    },
+    {
+        title: 'Deferred Props',
+        href: deferredProps(),
+        icon: Timer,
+    },
+    {
+        title: 'Infinite Scroll',
+        href: infiniteScroll(),
+        icon: ArrowDownUp,
+    },
+    {
+        title: 'Form',
+        href: formIndex(),
+        icon: FileText,
+    },
+    {
+        title: 'View Transition',
+        href: viewTransitionIndex(),
+        icon: Sparkles,
+    },
+];
+
 export default function Dashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
-            <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                    <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-                    </div>
-                    <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-                    </div>
-                    <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-                    </div>
-                </div>
-                <div className="relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
-                    <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+            <div className="p-6">
+                <h1 className="mb-6 text-3xl font-bold">Dashboard</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {features.map((feature) => {
+                        const Icon = feature.icon;
+                        return (
+                            <Link key={feature.title} href={feature.href}>
+                                <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                                    <CardHeader>
+                                        <CardTitle className="flex items-center gap-2">
+                                            <Icon className="h-5 w-5" />
+                                            {feature.title}
+                                        </CardTitle>
+                                    </CardHeader>
+                                </Card>
+                            </Link>
+                        );
+                    })}
                 </div>
             </div>
         </AppLayout>
