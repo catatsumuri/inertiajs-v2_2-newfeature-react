@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,7 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $companies = Company::factory(10)->create();
+
+        User::factory(50)->create()->each(function ($user) use ($companies) {
+            $user->update(['company_id' => $companies->random()->id]);
+        });
 
         User::firstOrCreate(
             ['email' => 'test@example.com'],
