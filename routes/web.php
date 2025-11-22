@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\PartialReloadController;
 use App\Http\Controllers\PollingController;
 use App\Http\Controllers\DeferredPropsController;
@@ -19,6 +20,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
+    Route::get('/form', [FormController::class, 'index'])->name('form.index');
+    Route::post('/form', [FormController::class, 'store'])->name('form.store');
     Route::get('/partial-reload', [PartialReloadController::class, 'index'])->name('partial-reload.index');
     Route::get('/polling', PollingController::class)->name('polling');
     Route::get('/deferred-props', DeferredPropsController::class)->name('deferred-props');
