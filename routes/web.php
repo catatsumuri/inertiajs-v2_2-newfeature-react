@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PartialReloadController;
+use App\Http\Controllers\PollingController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -17,6 +18,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/partial-reload', [PartialReloadController::class, 'index'])->name('partial-reload.index');
+    Route::get('/polling', PollingController::class)->name('polling');
 });
 
 require __DIR__.'/settings.php';

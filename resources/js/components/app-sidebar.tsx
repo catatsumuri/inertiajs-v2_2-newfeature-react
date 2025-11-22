@@ -10,11 +10,11 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
+import { dashboard, polling } from '@/routes';
 import { index as partialReloadIndex } from '@/routes/partial-reload';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, RefreshCw } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, Radio, RefreshCw } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -27,6 +27,11 @@ const mainNavItems: NavItem[] = [
         title: 'Partial Reload',
         href: partialReloadIndex(),
         icon: RefreshCw,
+    },
+    {
+        title: 'Polling',
+        href: polling(),
+        icon: Radio,
     },
 ];
 
