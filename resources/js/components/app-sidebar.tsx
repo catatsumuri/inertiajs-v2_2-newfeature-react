@@ -10,11 +10,11 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard, polling, deferredProps } from '@/routes';
+import { dashboard, polling, deferredProps, infiniteScroll } from '@/routes';
 import { index as partialReloadIndex } from '@/routes/partial-reload';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, Radio, RefreshCw, Timer } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, Radio, RefreshCw, Timer, ArrowDownUp } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -37,6 +37,11 @@ const mainNavItems: NavItem[] = [
         title: 'Deferred Props',
         href: deferredProps(),
         icon: Timer,
+    },
+    {
+        title: 'Infinite Scroll',
+        href: infiniteScroll(),
+        icon: ArrowDownUp,
     },
 ];
 
