@@ -13,9 +13,10 @@ import {
 import { dashboard, polling, deferredProps, infiniteScroll } from '@/routes';
 import { index as partialReloadIndex } from '@/routes/partial-reload';
 import { index as formIndex } from '@/routes/form';
+import { index as viewTransitionIndex } from '@/routes/view-transition';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, Radio, RefreshCw, Timer, ArrowDownUp, FileText } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, Radio, RefreshCw, Timer, ArrowDownUp, FileText, Sparkles } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -48,6 +49,11 @@ const mainNavItems: NavItem[] = [
         title: 'Form',
         href: formIndex(),
         icon: FileText,
+    },
+    {
+        title: 'View Transition',
+        href: viewTransitionIndex(),
+        icon: Sparkles,
     },
 ];
 
