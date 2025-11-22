@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\DeferredPropsController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\InfiniteScrollController;
 use App\Http\Controllers\PartialReloadController;
 use App\Http\Controllers\PollingController;
-use App\Http\Controllers\DeferredPropsController;
-use App\Http\Controllers\InfiniteScrollController;
 use App\Http\Controllers\ViewTransitionController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;

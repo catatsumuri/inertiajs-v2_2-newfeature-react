@@ -10,13 +10,23 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard, polling, deferredProps, infiniteScroll } from '@/routes';
-import { index as partialReloadIndex } from '@/routes/partial-reload';
+import { dashboard, deferredProps, infiniteScroll, polling } from '@/routes';
 import { index as formIndex } from '@/routes/form';
+import { index as partialReloadIndex } from '@/routes/partial-reload';
 import { index as viewTransitionIndex } from '@/routes/view-transition';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, Radio, RefreshCw, Timer, ArrowDownUp, FileText, Sparkles } from 'lucide-react';
+import {
+    ArrowDownUp,
+    BookOpen,
+    FileText,
+    Folder,
+    LayoutGrid,
+    Radio,
+    RefreshCw,
+    Sparkles,
+    Timer,
+} from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [

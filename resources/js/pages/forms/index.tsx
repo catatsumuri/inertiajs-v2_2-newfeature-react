@@ -1,13 +1,13 @@
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import AppLayout from '@/layouts/app-layout';
 import { index as formIndex, store as formStore } from '@/routes/form';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Form } from '@inertiajs/react';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Form, Head } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -23,7 +23,11 @@ type SubmittedData = {
     attachments?: string[];
 };
 
-export default function Index({ submittedData }: { submittedData?: SubmittedData }) {
+export default function Index({
+    submittedData,
+}: {
+    submittedData?: SubmittedData;
+}) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Form" />
@@ -43,13 +47,16 @@ export default function Index({ submittedData }: { submittedData?: SubmittedData
                                 <strong>Body:</strong> {submittedData.body}
                             </div>
                             <div>
-                                <strong>Tags:</strong> {submittedData.tags.join(', ')}
+                                <strong>Tags:</strong>{' '}
+                                {submittedData.tags.join(', ')}
                             </div>
-                            {submittedData.attachments && submittedData.attachments.length > 0 && (
-                                <div>
-                                    <strong>Attachments:</strong> {submittedData.attachments.join(', ')}
-                                </div>
-                            )}
+                            {submittedData.attachments &&
+                                submittedData.attachments.length > 0 && (
+                                    <div>
+                                        <strong>Attachments:</strong>{' '}
+                                        {submittedData.attachments.join(', ')}
+                                    </div>
+                                )}
                         </CardContent>
                     </Card>
                 )}
@@ -58,10 +65,13 @@ export default function Index({ submittedData }: { submittedData?: SubmittedData
                     action={formStore()}
                     disableWhileProcessing
                     resetOnSuccess
-                    transform={data => ({
+                    transform={(data) => ({
                         ...data,
                         tags: data.tags
-                            ? data.tags.split(',').map(t => t.trim()).filter(Boolean)
+                            ? data.tags
+                                  .split(',')
+                                  .map((t) => t.trim())
+                                  .filter(Boolean)
                             : [],
                     })}
                 >
@@ -73,7 +83,7 @@ export default function Index({ submittedData }: { submittedData?: SubmittedData
                         wasSuccessful,
                         recentlySuccessful,
                     }) => (
-                        <div className="space-y-4 max-w-2xl">
+                        <div className="max-w-2xl space-y-4">
                             <div className="space-y-2">
                                 <Label htmlFor="title">Title</Label>
                                 <Input
@@ -83,7 +93,9 @@ export default function Index({ submittedData }: { submittedData?: SubmittedData
                                     placeholder="Weekly progress report"
                                 />
                                 {errors.title && (
-                                    <p className="text-sm text-destructive">{errors.title}</p>
+                                    <p className="text-sm text-destructive">
+                                        {errors.title}
+                                    </p>
                                 )}
                             </div>
 
@@ -96,12 +108,16 @@ export default function Index({ submittedData }: { submittedData?: SubmittedData
                                     placeholder="Write your report content here..."
                                 />
                                 {errors.body && (
-                                    <p className="text-sm text-destructive">{errors.body}</p>
+                                    <p className="text-sm text-destructive">
+                                        {errors.body}
+                                    </p>
                                 )}
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="tags">Tags (comma separated)</Label>
+                                <Label htmlFor="tags">
+                                    Tags (comma separated)
+                                </Label>
                                 <Input
                                     id="tags"
                                     type="text"
@@ -109,7 +125,9 @@ export default function Index({ submittedData }: { submittedData?: SubmittedData
                                     placeholder="frontend, inertia, weekly"
                                 />
                                 {errors.tags && (
-                                    <p className="text-sm text-destructive">{errors.tags}</p>
+                                    <p className="text-sm text-destructive">
+                                        {errors.tags}
+                                    </p>
                                 )}
                             </div>
 
@@ -142,25 +160,27 @@ export default function Index({ submittedData }: { submittedData?: SubmittedData
                                 </div>
                             )}
 
-                            {wasSuccessful && recentlySuccessful && !hasErrors && (
-                                <Alert>
-                                    <AlertDescription>
-                                        Report created successfully.
-                                    </AlertDescription>
-                                </Alert>
-                            )}
+                            {wasSuccessful &&
+                                recentlySuccessful &&
+                                !hasErrors && (
+                                    <Alert>
+                                        <AlertDescription>
+                                            Report created successfully.
+                                        </AlertDescription>
+                                    </Alert>
+                                )}
 
                             <div className="flex items-center gap-3">
-                                <Button
-                                    type="submit"
-                                    disabled={processing}
-                                >
-                                    {processing ? 'Submitting…' : 'Create Report'}
+                                <Button type="submit" disabled={processing}>
+                                    {processing
+                                        ? 'Submitting…'
+                                        : 'Create Report'}
                                 </Button>
 
                                 {hasErrors && (
                                     <span className="text-sm text-destructive">
-                                        There are some errors. Please fix them and try again.
+                                        There are some errors. Please fix them
+                                        and try again.
                                     </span>
                                 )}
                             </div>

@@ -1,9 +1,9 @@
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
 import { index as viewTransitionIndex } from '@/routes/view-transition';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 
 type Item = {
     id: number;
@@ -28,7 +28,9 @@ export default function ViewTransitionShow({ item }: { item: Item }) {
             <Head title={item.title} />
             <div className="p-6">
                 <Link href={viewTransitionIndex()} viewTransition>
-                    <Button variant="outline" className="mb-6">← Back to List</Button>
+                    <Button variant="outline" className="mb-6">
+                        ← Back to List
+                    </Button>
                 </Link>
                 <Card>
                     <CardHeader>

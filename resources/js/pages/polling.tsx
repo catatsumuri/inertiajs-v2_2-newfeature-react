@@ -11,7 +11,13 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Polling({ users, currentTime }: { users: User[]; currentTime: string }) {
+export default function Polling({
+    users,
+    currentTime,
+}: {
+    users: User[];
+    currentTime: string;
+}) {
     usePoll(3000, { only: ['users'] });
 
     return (
@@ -20,15 +26,22 @@ export default function Polling({ users, currentTime }: { users: User[]; current
             <div className="p-6">
                 <div className="mb-6">
                     <h1 className="text-3xl font-bold">Polling</h1>
-                    <p className="mt-2 text-sm text-muted-foreground">Current Time: {currentTime}</p>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                        Current Time: {currentTime}
+                    </p>
                 </div>
                 <div className="space-y-2">
                     {users.map((user) => (
-                        <div key={user.id} className="flex items-center justify-between rounded-lg border bg-card p-4 shadow-sm">
+                        <div
+                            key={user.id}
+                            className="flex items-center justify-between rounded-lg border bg-card p-4 shadow-sm"
+                        >
                             <div className="flex items-center gap-4">
                                 <UserInfo user={user} showEmail />
                             </div>
-                            <span className="text-sm font-medium">{user.company?.name || 'No company'}</span>
+                            <span className="text-sm font-medium">
+                                {user.company?.name || 'No company'}
+                            </span>
                         </div>
                     ))}
                 </div>

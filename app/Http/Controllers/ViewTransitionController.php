@@ -8,7 +8,7 @@ class ViewTransitionController extends Controller
 {
     public function index()
     {
-        $items = collect(range(1, 12))->map(fn($i) => [
+        $items = collect(range(1, 12))->map(fn ($i) => [
             'id' => $i,
             'title' => "Item {$i}",
             'description' => "Description for item {$i}",

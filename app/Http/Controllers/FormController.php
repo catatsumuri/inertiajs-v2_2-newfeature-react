@@ -31,7 +31,7 @@ class FormController extends Controller
         ];
 
         if (isset($validated['attachments'])) {
-            $dataToStore['attachments'] = collect($validated['attachments'])->map(fn($file) => $file->getClientOriginalName())->toArray();
+            $dataToStore['attachments'] = collect($validated['attachments'])->map(fn ($file) => $file->getClientOriginalName())->toArray();
         }
 
         return redirect()->route('form.index')->with('submitted_data', $dataToStore);

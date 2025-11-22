@@ -15,7 +15,11 @@ type PaginatedUsers = {
     data: User[];
 };
 
-export default function InfiniteScrollPage({ users }: { users: PaginatedUsers }) {
+export default function InfiniteScrollPage({
+    users,
+}: {
+    users: PaginatedUsers;
+}) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Infinite Scroll" />
@@ -24,11 +28,16 @@ export default function InfiniteScrollPage({ users }: { users: PaginatedUsers })
                 <InfiniteScroll data="users">
                     <div className="space-y-2">
                         {users.data.map((user) => (
-                            <div key={user.id} className="flex items-center justify-between rounded-lg border bg-card p-4 shadow-sm">
+                            <div
+                                key={user.id}
+                                className="flex items-center justify-between rounded-lg border bg-card p-4 shadow-sm"
+                            >
                                 <div className="flex items-center gap-4">
                                     <UserInfo user={user} showEmail />
                                 </div>
-                                <span className="text-sm font-medium">{user.company?.name || 'No company'}</span>
+                                <span className="text-sm font-medium">
+                                    {user.company?.name || 'No company'}
+                                </span>
                             </div>
                         ))}
                     </div>
